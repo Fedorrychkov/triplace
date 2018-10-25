@@ -1,10 +1,12 @@
-// import { combineReducers } from 'redux';
-// import {
-//     createStore,
-// } from 'redux';
+import { combineReducers } from 'redux';
+import {
+    createStore,
+} from 'redux';
 
-// const reducer = combineReducers({
-    
-// });
+import { headerUpdaterReduce } from './reducers/header';
 
-// export const store = createStore(reducer);
+const reducer = combineReducers({
+    headerUpdaterReduce
+});
+
+export const store = createStore(reducer);

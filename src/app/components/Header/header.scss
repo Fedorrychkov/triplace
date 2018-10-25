@@ -1,5 +1,19 @@
 .header {
     background-color: #b3e4ff;
+    color: #555;
+
+    &__slide-overflow {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        transition: all .35s ease-in;
+        transform: translate(-100%, 0);
+    }
 
     &__slide-menu {
         position: fixed;
@@ -7,6 +21,93 @@
         top: 0;
         right: 0;
         bottom: 0;
-        transform: translate(-100%, 0);
+        z-index: 999;
+        transform: translate(100%, 0);
+        transition: all .35s ease-in;
+
+        &.open {
+            transform: translate(0, 0);
+
+            .header__slide-overflow {
+                background-color: rgba(0, 0, 0, .25);
+                transform: translate(0, 0);
+            }
+        }
+
+        .header-nav {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80%;
+            background-color: #fff;
+            height: 100%;
+            transform: translate(150%, 0);
+            transition: all .30s ease-in;
+            z-index: 99;
+
+            &.open {
+                transform: translate(0, 0);
+            }
+        }
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        padding: 8px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        img {
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin-right: 12px;
+        }
+
+        span {
+            font-size: 24px;
+        }
+    }
+
+    &__burger {
+        position: relative;
+        width: 25px;
+        height: 16px;
+
+        
+        &::after, &::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            left: 0;
+            background-color: #555;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        .burger {
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            transform: translate(0, -50%);
+            background-color: #555;
+        }
     }
 }
