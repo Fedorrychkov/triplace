@@ -1,0 +1,50 @@
+.input {
+    &__field, &__error-label, &__control {
+        width: 100%;
+        display: block;
+    }
+
+    &__field {
+        position: relative;
+        
+        &.focus {
+            .input__label {
+                top: 4px;
+                transform: translate(0, 0);
+                font-size: 12px;
+            }
+        }
+
+        &.active {
+            .input__label {
+                top: 4px;
+                transform: translate(0, 0);
+                font-size: 12px;
+            }
+        }
+    }
+
+    &__label {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: -1;
+        display: block;
+        color: #888;
+        font-weight: 100;
+        transition: all .15s ease;
+    }
+
+    &__control {
+        padding: 16px 12px 8px;
+        outline: none;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: transparent;
+        z-index: 1;
+    }
+
+    &__error-label {
+    }
+}

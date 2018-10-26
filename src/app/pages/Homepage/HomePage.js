@@ -1,9 +1,11 @@
 import React from 'react';
-import Button from '../../components/ui/Button/Button';
 import './homepage.scss';
 
-export const HomePage = (props) => {
+import Button from '../../components/ui/Button/Button';
+import PopularPlaces from '../../components/PopularPlaces/PopularPlaces';
+import AddPlace from '../../components/AddPlace/AddPlace';
 
+export const HomePage = (props) => {
     const { welcome, updateWelcome } = props;
 
     const useStart = () => {
@@ -26,8 +28,9 @@ export const HomePage = (props) => {
                 <Button classNames="button button-welcome" clickEvent={useStart} title="Поехали!" />
             </div>
             <div className={`homepage__page ${welcome.welcomeIsShow ? '' : 'show'}`}>
-                sadasd
+                <PopularPlaces />
+                <AddPlace />
             </div>
         </div>
-    )
+    );
 }

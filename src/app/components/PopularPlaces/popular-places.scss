@@ -1,0 +1,14 @@
+.popular-places {
+
+    &__title {
+        margin: 0 0 8px;
+        font-weight: 500;
+    }
+
+    &__content {
+        .content {
+            font-size: 16px;
+            font-weight: 100;
+        }
+    }
+}
