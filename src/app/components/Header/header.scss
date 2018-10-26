@@ -1,6 +1,8 @@
 .header {
     background-color: #b3e4ff;
     color: #555;
+    z-index: 22;
+    position: relative;
 
     &__slide-overflow {
         position: absolute;

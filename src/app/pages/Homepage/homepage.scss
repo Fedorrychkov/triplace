@@ -1,0 +1,51 @@
+.homepage {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+
+    &__welcome {
+        color: #555;
+        text-align: center;
+        position: relative;
+        transition: all 1s ease-in-out;
+        transform: translate(0, -650%);
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        opacity: 0;
+        z-index: 1;
+
+        h2 {
+            font-size: 20px;
+            margin: 8px 0;
+        }
+
+        p {
+            margin: 8px 0 20px;
+            font-weight: 100;
+        }
+
+        &.show {
+            transform: translate(0, -50%);
+            opacity: 1;
+        }
+    }
+
+    &__page {
+        position: relative;
+        opacity: 0;
+        transition: all 1.5s ease-in-out;
+        transform: translate(0, 100%);
+        width: 100%;
+        z-index: 11;
+
+        &.show {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}

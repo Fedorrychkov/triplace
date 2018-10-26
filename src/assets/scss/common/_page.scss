@@ -1,5 +1,13 @@
 .page {
     &-full {
         height: 100vh;
+
+        .page-content {
+            height: calc(100% - 56px);
+        }
+    }
+
+    &-content {
+        padding: 12px 0;
     }
 }

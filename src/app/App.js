@@ -17,9 +17,11 @@ class App extends Component {
     onSwipeMove(position, event) {
         if (position.x <= -90 && position.x >= -190) {
             this.props.updateHeader(true);
+            document.location.hash = '#navopen';
         }
         if (position.x >= 90 && position.x <= 190) {
             this.props.updateHeader(false);
+            document.location.hash = '';
         }
     }
     
