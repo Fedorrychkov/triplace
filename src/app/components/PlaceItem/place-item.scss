@@ -1,0 +1,31 @@
+.place-item {
+    background-color: #fff;
+    border: 1px solid #666;
+    z-index: 1;
+    position: relative;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    transition: all .15s ease-in;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        width: 12px;
+        height: 12px;
+        transform: rotate(45deg) translate(-50%, 0);
+        border: 2px solid #000;
+        border-bottom: none;
+        border-left: none;
+    }
+
+    &__name {
+        font-weight: 100;
+    }
+}

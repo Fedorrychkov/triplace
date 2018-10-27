@@ -1,0 +1,12 @@
+const environment = {
+    development: {
+        googleKey: 'key',
+        hostApi: 'url'
+    }
+    production: {
+        googleKey: 'key',
+        hostApi: 'url'
+    }
+}
+
+export default environment;

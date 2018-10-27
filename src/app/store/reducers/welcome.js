@@ -2,7 +2,7 @@ import { SHOW_WELCOME, HIDE_WELCOME } from '../actionTypes';
 
 let hasVisit = localStorage.getItem('triplace.has_visited');
 hasVisit = hasVisit === null ? 1 : 0;
-// console.log(hasVisit, hasVisit, !!hasVisit === true );
+
 const initialState = {
     welcomeIsShow: !!hasVisit === true ? true : false,
     welcomeState: SHOW_WELCOME // TODO: Change Type from Bool

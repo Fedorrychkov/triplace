@@ -1,0 +1,26 @@
+.places {
+
+    &__nope {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0;
+        flex-direction: column;
+
+        &-title {
+            margin: 12px 0;
+            font-weight: 100;
+            text-transform: uppercase;
+        }
+
+        &-content {
+            font-weight: 100;
+            margin: 0;
+            text-align: center;
+
+            &.offset-top-1 {
+                margin: 30px 0 0;
+            }
+        }
+    }
+}

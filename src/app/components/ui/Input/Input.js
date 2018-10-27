@@ -5,18 +5,20 @@ class Input extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            focus: false,
-            value: ''
+            focus: false
         };
 
         this.inputFocus =  this.inputFocus.bind(this);
-        this.changeHandler =  this.changeHandler.bind(this);
         this.inputBlur =  this.inputBlur.bind(this);
     }
     
 
     inputFocus(e) {
         this.setState({focus: true});
+
+        if (e === false) {
+            this.setState({focus: false});
+        }
     }
 
     inputBlur(e) {
@@ -25,15 +27,20 @@ class Input extends React.Component {
         }
     }
 
-    changeHandler(value) {
-        this.setState({value: value});
-    }
-
     render() {
         return (
-            <div className={ `input__field ${this.state.focus ? 'focus' : ''} ${this.state.value.length > 0 ? 'active' : ''}`}>
+            <div className={ `input__field ${this.state.focus ? 'focus' : ''} ${this.props.inputValue.length > 0 ? 'active' : ''}`}>
                 <label htmlFor={ this.props.formControlName } className="input__label">{ this.props.placeholder }</label>
-                <input type={ this.props.type } name={ this.props.formControlName } className="input__control" placeholder=" " {...this.props.required} onFocus={this.inputFocus} onBlur={e => this.inputBlur(e.target.value)} value={this.state.value} onChange={e => this.changeHandler(e.target.value)} />
+                <input 
+                    type={ this.props.type }
+                    name={ this.props.formControlName } 
+                    className="input__control" 
+                    placeholder=" " 
+                    {...this.props.required} 
+                    onFocus={this.inputFocus} 
+                    onBlur={e => this.inputBlur(e.target.value)}
+                    value = {this.props.inputValue}
+                    onChange={e => this.props.inputChange(e.target.value)} />
                 <span className="input__error-label"></span>
             </div>
         );

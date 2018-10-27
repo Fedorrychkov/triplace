@@ -9,7 +9,7 @@ export const Header = (props) => {
 
 
     window.onhashchange = () => {
-        if (document.location.hash === '' && navIsOpen === true) {
+        if (document.location.hash !== '#navopen' && navIsOpen === true) {
             updateHeader(false);
         }
     }

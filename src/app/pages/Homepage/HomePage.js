@@ -3,7 +3,8 @@ import './homepage.scss';
 
 import Button from '../../components/ui/Button/Button';
 import PopularPlaces from '../../components/PopularPlaces/PopularPlaces';
-import AddPlace from '../../components/AddPlace/AddPlace';
+import SmartAddPlace from '../../containers/SmartAddPlace/SmartAddPlace';
+import SmartPlaceList from '../../containers/SmartPlaceList/SmartPlaceList';
 
 export const HomePage = (props) => {
     const { welcome, updateWelcome } = props;
@@ -29,7 +30,8 @@ export const HomePage = (props) => {
             </div>
             <div className={`homepage__page ${welcome.welcomeIsShow ? '' : 'show'}`}>
                 <PopularPlaces />
-                <AddPlace />
+                <SmartAddPlace />
+                <SmartPlaceList />
             </div>
         </div>
     );

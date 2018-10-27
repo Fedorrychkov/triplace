@@ -5,10 +5,12 @@ import {
 
 import { headerUpdaterReduce } from './reducers/header';
 import { welcomeReduce } from './reducers/welcome';
+import placeReduce from './reducers/place';
 
 const reducer = combineReducers({
     headerUpdaterReduce,
-    welcomeReduce
+    welcomeReduce,
+    placeReduce
 });
 
 export const store = createStore(reducer);
