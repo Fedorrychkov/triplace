@@ -16,10 +16,14 @@ const PlaceItem = (props) => {
     }
     
     const onSwipeEnd = (event) => {
-        if (placeRef.current.deleteOffset < 150) {
+        const revert = () => {
             placeRef.current.style.transform = 'none';
             placeRef.current.style.opacity = 1;
-        } else {
+        }
+        if (placeRef.current.deleteOffset < 150) {
+            revert();
+        } 
+        if (placeRef.current.deleteOffset > 150) {
             removePlace({id: objectPlace.id});
         }
     }
