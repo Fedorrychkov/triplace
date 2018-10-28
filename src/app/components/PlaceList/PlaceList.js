@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import PlaceItem from '../PlaceItem/PlaceItem';
 import SmartPlaceItem from '../../containers/SmartPlaceItem/SmartPlaceItem';
 
 import './places.scss';
@@ -18,7 +16,7 @@ const PlaceList = (props) => {
             <div className="places__content">
                 {
                     places.reverse().map(item => {
-                        return <Link to={`/place/${item.id}`} key={item.id}><SmartPlaceItem key={item.id} objectPlace={item} /></Link>;
+                        return <SmartPlaceItem key={item.id} objectPlace={item} />;
                     })
                 }
             </div>

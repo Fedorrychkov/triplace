@@ -1,45 +1,76 @@
 import React from 'react';
-import './place-item.scss';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import Swipe from 'react-easy-swipe';
 
-const PlaceItem = (props) => {
-    const { objectPlace, removePlace } = props;
+import './place-item.scss';
+import NotificationAlert from '../NotificationAlert/NotificationAlert';
 
-    const placeRef = React.createRef();
+class PlaceItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.placeRef = React.createRef();
+    }
     
-    const onSwipeMove = (position, event) => {
+    state = {
+        notifIsOpen: false
+    };
+    
+    refRevert = () => {
+        this.placeRef.current.style.transform = 'none';
+        this.placeRef.current.style.opacity = 1;
+    }
+
+    onSwipeMove = (position, event) => {
         if (position.x > 10) {
-            placeRef.current.style.transform = `translateX(${position.x}px)`;
-            placeRef.current.deleteOffset = position.x;
-            placeRef.current.style.opacity = (1000 - position.x*2)/1000;
+            this.placeRef.current.style.transform = `translateX(${position.x}px)`;
+            this.placeRef.current.deleteOffset = position.x;
+            this.placeRef.current.style.opacity = (1000 - position.x*2)/1000;
         }
     }
     
-    const onSwipeEnd = (event) => {
-        const revert = () => {
-            placeRef.current.style.transform = 'none';
-            placeRef.current.style.opacity = 1;
-        }
-        if (placeRef.current.deleteOffset < 150) {
-            revert();
+    onSwipeEnd = (event) => {
+        
+        if (this.placeRef.current.deleteOffset < 150) {
+            this.refRevert();
         } 
-        if (placeRef.current.deleteOffset > 150) {
-            removePlace({id: objectPlace.id});
+        if (this.placeRef.current.deleteOffset > 150) {
+            this.setState({notifIsOpen: true});
         }
     }
 
-    return (
+    acceptClick = (e) => {
+        this.props.removePlace({id: this.props.objectPlace.id});
+    }
 
-        <Swipe
-            onSwipeMove={onSwipeMove}
-            onSwipeEnd={onSwipeEnd}>
-                <article className="place-item" ref={placeRef}>
-                    <div className="place-item__name">
-                        { objectPlace.placeName }
-                    </div>
-                </article>
-        </Swipe>
-    );
-};
+    cancelClick = (e) => {
+        this.setState({notifIsOpen: false});
+        this.refRevert();
+    }
+
+    render() {
+        return (
+            <Swipe
+                onSwipeMove={this.onSwipeMove}
+                onSwipeEnd={this.onSwipeEnd}>
+                <Link to={`/place/${this.props.objectPlace.id}`} key={this.props.objectPlace.id}>
+                    <article className="place-item" ref={this.placeRef}>
+                        <div className="place-item__name">
+                            { this.props.objectPlace.placeName }
+                        </div>
+                    </article>
+                </Link>
+                <div>
+                    {
+                        this.state.notifIsOpen && ReactDOM.createPortal(
+                            <NotificationAlert acceptClick={this.acceptClick} cancelClick={this.cancelClick} title='Удалить эту поездку?' alert='Все данные об этой поездке будут утеряны' />,
+                            document.getElementById('notifalert')
+                        )
+                    }
+                </div>
+            </Swipe>
+        );
+    }
+}
 
 export default PlaceItem;

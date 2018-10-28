@@ -10,10 +10,6 @@ class App extends Component {
         this.onSwipeMove = this.onSwipeMove.bind(this);
     }
 
-    onSwipeStart(event) {
-        // console.log('Start swiping...', event);
-    }
-    
     onSwipeMove(position, event) {
         if (position.x <= -90 && position.x >= -190) {
             this.props.updateHeader(true);
@@ -24,17 +20,11 @@ class App extends Component {
             document.location.hash = '';
         }
     }
-    
-    onSwipeEnd(event) {
-        // console.log('End swiping...', event);
-    }
 
   render() {
     return (
         <Swipe className="page-full"
-            onSwipeStart={this.onSwipeStart}
-            onSwipeMove={this.onSwipeMove}
-            onSwipeEnd={this.onSwipeEnd}>
+            onSwipeMove={this.onSwipeMove}>
             <Fragment>
                 <Switch>
                     <Route name="root" exact path='/' component={HomeLayout}/>
@@ -42,6 +32,7 @@ class App extends Component {
                     <Route name="error" path='*' component={HomeLayout}/>
                 </Switch>
             </Fragment>
+            {/* <NotificationAlert /> */}
         </Swipe>
     );
   }
