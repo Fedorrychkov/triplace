@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getPlace: (object) => {
             dispatch(placeAction('GET_PLACE', object));
-        }
+        },
     }
 }
 

@@ -1,4 +1,4 @@
-import { ADD_PLACE, GET_PLACE, GET_PLACES } from '../actionTypes';
+import { ADD_PLACE, GET_PLACE, GET_PLACES, REMOVE_PLACE } from '../actionTypes';
 
 const places = localStorage.getItem('triplace.places') ? JSON.parse(localStorage.getItem('triplace.places')) : [];
 
@@ -19,6 +19,10 @@ export default function placeReduce(state: any = initialState, action: any) {
         case GET_PLACE:
             const place = placeList.filter((item) => item.id === action.id);
             return { ...state, place: place };
+        case REMOVE_PLACE:
+            const placeLists = placeList.filter((item) => item.id !== action.id);
+            localStorage.setItem('triplace.places', JSON.stringify(placeLists));
+            return { ...state, places: placeLists };
         default:
             return state;
     }

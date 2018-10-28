@@ -1,17 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PlaceItem from '../PlaceItem/PlaceItem';
+// import PlaceItem from '../PlaceItem/PlaceItem';
+import SmartPlaceItem from '../../containers/SmartPlaceItem/SmartPlaceItem';
 
 import './places.scss';
 
 const PlaceList = (props) => {
     const { places } = props;
-    console.log(props);
-
-    const openPlace = (id) => {
-        console.log(id);
-        props.getPlace({id: id});
-    }
     
     return (
         <section className="places">
@@ -23,7 +18,7 @@ const PlaceList = (props) => {
             <div className="places__content">
                 {
                     places.reverse().map(item => {
-                        return <Link to={`/place/${item.id}`} key={item.id} onClick={e => openPlace(item.id)}><PlaceItem key={item.id} objectPlace={item} /></Link>;
+                        return <Link to={`/place/${item.id}`} key={item.id}><SmartPlaceItem key={item.id} objectPlace={item} /></Link>;
                     })
                 }
             </div>
