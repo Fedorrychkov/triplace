@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/img/logo-big.png';
 import './header.scss';
@@ -27,7 +28,7 @@ export const Header = (props) => {
         <Fragment>
             <header className="header">
                 <div className="header__container container">
-                    <h1 className="header__logo"> <img src={logo} alt="Triplace - logo" /> <span>Triplace</span></h1>
+                    <Link to="/"><h1 className="header__logo"> <img src={logo} alt="Triplace - logo" /> <span>Triplace</span></h1></Link>
                     <a href="#navopen" className="header__burger" onClick={openNavigation}> <span className="burger"></span> </a>
                 </div>
             </header>

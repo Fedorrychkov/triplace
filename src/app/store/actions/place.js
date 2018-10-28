@@ -7,7 +7,7 @@ export default function placeAction(state: string, object) {
         case GET_PLACES:
             return { type: GET_PLACES };
         case GET_PLACE:
-            return { type: GET_PLACE };
+            return { type: GET_PLACE, id: object.id };
         default:
             return { type: GET_PLACES };
     }

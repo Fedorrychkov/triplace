@@ -8,15 +8,17 @@ const initialState = {
 }
 
 export default function placeReduce(state: any = initialState, action: any) {
+    const placeList = localStorage.getItem('triplace.places') ? JSON.parse(localStorage.getItem('triplace.places')) : []
     switch (action.type) {
         case ADD_PLACE:
             places.push(action.place);
             localStorage.setItem('triplace.places', JSON.stringify(places));
             return { ...state, places: places };
         case GET_PLACES:
-            return { ...state, places: localStorage.getItem('triplace.places') ? JSON.parse(localStorage.getItem('triplace.places')) : [] };
+            return { ...state, places: placeList };
         case GET_PLACE:
-            return { ...state, place: places };
+            const place = placeList.filter((item) => item.id === action.id);
+            return { ...state, place: place };
         default:
             return state;
     }

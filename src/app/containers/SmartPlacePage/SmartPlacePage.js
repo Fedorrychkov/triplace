@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import PlaceList from '../../components/PlaceList/PlaceList';
 import placeAction from '../../store/actions/place';
+import PlacePage from '../../pages/PlacePage/PlacePage';
 
 const mapStateToProps = (state) => {
     return {
-        places: state.placeReduce.places
+        place: state.placeReduce.place
     }
 }
 
@@ -16,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SmartPlaceList = connect(mapStateToProps, mapDispatchToProps)(PlaceList);
+const SmartPlacePage = connect(mapStateToProps, mapDispatchToProps)(PlacePage);
 
-export default SmartPlaceList;
+export default SmartPlacePage;

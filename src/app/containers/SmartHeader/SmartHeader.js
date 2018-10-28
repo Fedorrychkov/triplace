@@ -16,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SmartHeader = connect(mapStateToProps, mapDispatchToProps)(Header);
+const SmartHeader = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(Header);
 
 export default SmartHeader;

@@ -16,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SmartApp = connect(mapStateToProps, mapDispatchToProps)(App);
+const SmartApp = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);
 
 export default SmartApp;

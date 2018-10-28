@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import * as uuidV4 from 'uuid/v4'; 
+import * as moment from 'moment';
 
 import './add-place.scss';
 
@@ -20,7 +21,7 @@ class AddPlace extends React.Component  {
     
     submitPlace = () => {
         if (this.state.place.length >= 2 ) {
-            this.props.addPlace(ADD_PLACE, {place: {id: uuidV4(), placeName: this.state.place}});
+            this.props.addPlace(ADD_PLACE, {place: {id: uuidV4(), placeName: this.state.place, createdDate: moment()}});
             this.setState({place: ''});
             this.state.placeField.current.inputFocus(false);
         }       

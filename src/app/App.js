@@ -38,6 +38,8 @@ class App extends Component {
             <Fragment>
                 <Switch>
                     <Route name="root" exact path='/' component={HomeLayout}/>
+                    <Route name="place" path='/place/:id' component={HomeLayout}/>
+                    <Route name="error" path='*' component={HomeLayout}/>
                 </Switch>
             </Fragment>
         </Swipe>
