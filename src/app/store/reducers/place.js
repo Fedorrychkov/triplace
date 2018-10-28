@@ -11,9 +11,9 @@ export default function placeReduce(state: any = initialState, action: any) {
     const placeList = localStorage.getItem('triplace.places') ? JSON.parse(localStorage.getItem('triplace.places')) : []
     switch (action.type) {
         case ADD_PLACE:
-            places.push(action.place);
-            localStorage.setItem('triplace.places', JSON.stringify(places));
-            return { ...state, places: places };
+            placeList.push(action.place);
+            localStorage.setItem('triplace.places', JSON.stringify(placeList));
+            return { ...state, places: placeList };
         case GET_PLACES:
             return { ...state, places: placeList };
         case GET_PLACE:

@@ -32,7 +32,6 @@ class App extends Component {
                     <Route name="error" path='*' component={HomeLayout}/>
                 </Switch>
             </Fragment>
-            {/* <NotificationAlert /> */}
         </Swipe>
     );
   }
