@@ -4,6 +4,9 @@
 export const HEADER_OPEN = true;
 export const HEADER_CLOSE = false;
 
+export const PLACESEARCH_OPEN = 'PLACESEARCH_OPEN';
+export const PLACESEARCH_CLOSE = 'PLACESEARCH_CLOSE';
+
 export const SHOW_WELCOME = 'SHOW_WELCOME';
 export const HIDE_WELCOME = 'HIDE_WELCOME';
 

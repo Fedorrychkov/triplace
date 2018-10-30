@@ -29,18 +29,19 @@ class Input extends React.Component {
 
     render() {
         return (
-            <div className={ `input__field ${this.state.focus ? 'focus' : ''} ${this.props.inputValue.length > 0 ? 'active' : ''}`}>
+            <div className={ `input__field ${this.props.classList} ${this.state.focus ? 'focus' : ''} ${this.props.inputValue.length > 0 ? 'active' : ''}`}>
                 <label htmlFor={ this.props.formControlName } className="input__label">{ this.props.placeholder }</label>
                 <input 
                     type={ this.props.type }
                     name={ this.props.formControlName } 
-                    className="input__control" 
+                    className="input__control"
                     placeholder=" " 
                     {...this.props.required} 
                     onFocus={this.inputFocus} 
                     onBlur={e => this.inputBlur(e.target.value)}
                     value = {this.props.inputValue}
-                    onChange={e => this.props.inputChange(e.target.value)} />
+                    onChange={e => this.props.inputChange(e.target.value)}
+                    autoComplete="false" />
                 <span className="input__error-label"></span>
             </div>
         );

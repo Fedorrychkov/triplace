@@ -14,8 +14,9 @@ const PlaceList = (props) => {
                 <p className="places__nope-content offset-top-1">Добавленное место можно редактировать, ставить себе цели и задачи, выполнение которых приблизит вашу поездку</p>
             </div> : '' }
             <div className="places__content">
+                { places.length > 0 ? <h3 className="add-place__title title">Мои места</h3> : '' }
                 {
-                    places.reverse().map(item => {
+                    places.map(item => {
                         return <SmartPlaceItem key={item.id} objectPlace={item} />;
                     })
                 }

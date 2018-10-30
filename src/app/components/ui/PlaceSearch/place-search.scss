@@ -1,0 +1,176 @@
+.place-search {
+
+    &__start {
+
+        padding: 15px;
+        outline: none;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: transparent;
+        z-index: 1;
+        display: block;
+
+        &-label {
+            display: block;
+            color: #888;
+            font-weight: 100;
+            transition: all .15s ease;
+        }
+    }
+
+    &__overflow {
+        position: fixed;
+        z-index: -700;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparent;
+        height: 100%;
+        opacity: 0;
+        transition: all .15s ease-in;
+
+        &.open {
+            z-index: 700;
+            opacity: 1;
+        }
+    }
+
+    &__form {
+        position: fixed;
+        z-index: 700;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(100% - 56px);
+        opacity: 0;
+        transition: all .25s ease-in-out;
+        transform: translate(0, 200%);
+        background-color: #fff;
+
+        &.open {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .control {
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+        }
+
+        &-close {
+            border: none;
+            background-color: transparent;
+            // position: absolute;
+            // top: 15px;
+            // left: 15px;
+            width: 20px;
+            position: relative;
+            height: 16px;
+            font-weight: 400;
+            z-index: 11;
+            // transform: translate(0, -50%);
+            display: block;
+            margin-right: 20px;
+
+            &::after, &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+            }
+
+            &::after {
+                top: 50%;
+                border: 3px solid #555;
+                border-right: none;
+                border-top: none;
+                width: 10px;
+                height: 10px;
+                transform: rotate(45deg) translate(0, -50%);
+            }
+
+            &::before {
+                left: 2px;
+                top: 50%;
+                width: 100%;
+                height: 3px;
+                background-color: #555;
+                // transform: translate(0, -50%);
+            }
+        }
+
+        &-body {
+            margin-top: 10px;
+            font-weight: 100;
+            position: relative;
+        }
+
+        &-places {
+            // padding: 0 15px;
+            // display: block;
+            // overflow-y: scroll;
+            // position: relative;
+            // height: 100%;
+            // bottom: 0;
+            // left: 0;
+            // right: 0;
+            padding: 0;
+            display: block;
+            overflow-y: scroll;
+            position: fixed;
+            bottom: 53px;
+            left: 0;
+            top: 53px;
+            right: 0;
+        }
+
+        &-control {
+            position: fixed;
+            bottom: 0;
+            height: 53px;
+            left: 55px;
+            right: 55px;
+            border-top: 1px solid #555;
+
+            .tomap {
+                margin-top: 12px;
+                display: block;
+                position: relative;
+                color: #555;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: -30px;
+                    top: 0;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    border: 4px solid #555;
+                }
+            }
+        }
+    }
+
+    &__place {
+        padding: 8px 55px;
+        transition: all .15s ease;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .15);
+        }
+
+        .name {
+            font-weight: 100;
+            font-size: 18px;
+        }
+
+        .geocode {
+            font-size: 14px;
+            color: #777;
+        }
+    }
+}

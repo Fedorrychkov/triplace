@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         removePlace: (object) => {
             dispatch(placeAction('REMOVE_PLACE', object));
-            // dispatch(placeAction('GET_PLACES'));
         }
     }
 }

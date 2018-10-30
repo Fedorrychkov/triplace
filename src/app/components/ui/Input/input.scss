@@ -22,6 +22,27 @@
                 font-size: 12px;
             }
         }
+
+        &.underline {
+            .input__control {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .input__label {
+                left: 0;
+            }
+
+            &.focus, &.active {
+                .input__label {
+                    top: 0;
+                }
+            }
+        }
     }
 
     &__label {
