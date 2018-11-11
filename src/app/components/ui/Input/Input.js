@@ -5,7 +5,8 @@ class Input extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            focus: false
+            focus: false,
+            input: React.createRef()
         };
 
         this.inputFocus =  this.inputFocus.bind(this);
@@ -31,7 +32,7 @@ class Input extends React.Component {
         return (
             <div className={ `input__field ${this.props.classList} ${this.state.focus ? 'focus' : ''} ${this.props.inputValue.length > 0 ? 'active' : ''}`}>
                 <label htmlFor={ this.props.formControlName } className="input__label">{ this.props.placeholder }</label>
-                <input 
+                <input ref={this.state.field}
                     type={ this.props.type }
                     name={ this.props.formControlName } 
                     className="input__control"
