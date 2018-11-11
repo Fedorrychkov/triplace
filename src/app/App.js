@@ -21,20 +21,20 @@ class App extends Component {
         }
     }
 
-  render() {
-    return (
-        <Swipe className="page-full"
-            onSwipeMove={this.onSwipeMove}>
-            <Fragment>
-                <Switch>
-                    <Route name="root" exact path='/' component={HomeLayout}/>
-                    <Route name="place" path='/place/:id' component={HomeLayout}/>
-                    <Route name="error" path='*' component={HomeLayout}/>
-                </Switch>
-            </Fragment>
-        </Swipe>
-    );
-  }
+    render() {
+        return (
+            <Swipe className="page-full"
+                onSwipeMove={this.onSwipeMove}>
+                <Fragment>
+                    <Switch>
+                        <Route name="root" exact path='/' component={HomeLayout}/>
+                        <Route name="place" path='/place/:id' component={HomeLayout}/>
+                        <Route name="error" path='*' component={HomeLayout}/>
+                    </Switch>
+                </Fragment>
+            </Swipe>
+        );
+    }
 }
 
 export default App;

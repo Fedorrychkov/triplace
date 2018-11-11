@@ -9,19 +9,18 @@ import './place-search.scss';
 import Input from '../Input/Input';
 import { ADD_PLACE } from '../../../store/actionTypes';
 import GoogleMapService from '../../../services/GoogleMapService';
-import GoogleImageService from '../../../services/GoogleImageService';
 
 class PlaceSearch extends React.Component {
     state = {
         place: '',
         placeField: React.createRef(),
         popularPlaces: [
-            {name: 'Нью-Йорк', formatted_address: 'Нью-Йорк, США', placeId: 'ChIJOwg_06VPwokRYv534QaPC8g'},
-            {name: 'Амстердам', formatted_address: 'Северная Голландия, Нидерланды', placeId: 'ChIJVXealLU_xkcRja_At0z9AGY'},
-            {name: 'Бразилия', formatted_address: 'Бразилия', placeId: 'ChIJzyjM68dZnAARYz4p8gYVWik'},
-            {name: 'Сан-Франциско', formatted_address: 'Сан-Франциско, Калифорния, США', placeId: 'ChIJIQBpAG2ahYAR_6128GcTUEo'},
-            {name: 'Австралия', formatted_address: 'Австралия', placeId: 'ChIJ38WHZwf9KysRUhNblaFnglM'},
-            {name: 'Денвер', formatted_address: 'Денвер, Колорадо, США', placeId: 'ChIJzxcfI6qAa4cR1jaKJ_j0jhE'},
+            {name: 'Нью-Йорк', formatted_address: 'Нью-Йорк, США', place_id: 'ChIJOwg_06VPwokRYv534QaPC8g'},
+            {name: 'Амстердам', formatted_address: 'Северная Голландия, Нидерланды', place_id: 'ChIJVXealLU_xkcRja_At0z9AGY'},
+            {name: 'Бразилия', formatted_address: 'Бразилия', place_id: 'ChIJzyjM68dZnAARYz4p8gYVWik'},
+            {name: 'Сан-Франциско', formatted_address: 'Сан-Франциско, Калифорния, США', place_id: 'ChIJIQBpAG2ahYAR_6128GcTUEo'},
+            {name: 'Австралия', formatted_address: 'Австралия', place_id: 'ChIJ38WHZwf9KysRUhNblaFnglM'},
+            {name: 'Денвер', formatted_address: 'Денвер, Колорадо, США', place_id: 'ChIJzxcfI6qAa4cR1jaKJ_j0jhE'},
         ],
         places: []
     }
@@ -32,7 +31,6 @@ class PlaceSearch extends React.Component {
             document.location.hash = ''
         }
         this.google = new GoogleMapService();
-        this.googleImage = new GoogleImageService();
     }
 
     switchForm = () => {
@@ -41,8 +39,6 @@ class PlaceSearch extends React.Component {
         if (this.props.placeSearchState === 'PLACESEARCH_OPEN') {
             document.location.hash = ''
         }
-
-        console.log(this.state.placeField.current.state.input);
     }
 
     componentDidMount = () => {
@@ -55,15 +51,13 @@ class PlaceSearch extends React.Component {
 
         this.setState({places: this.state.popularPlaces});
 
-        // this.google.placeGeocodeByAddress('Денвер').then(res => {
+        // this.google.placeGeocodeByAddress('Нью-Йорк').then(res => {
         //     console.log(res);
         // });
 
         // this.google.placeGeocodeById('ChIJOwg_06VPwokRYv534QaPC8g').then(res => {
         //     console.log(res[0]);
         // });
-
-        // this.googleImage.getImageByName('New York place');
     }
 
     changeHandler = (value) => {
@@ -90,8 +84,13 @@ class PlaceSearch extends React.Component {
 
     addPlaceHandler = (place) => {
         this.setState({place: '', places: this.state.popularPlaces});
-        this.props.addPlace(ADD_PLACE, {place: {...place, reqId: uuidV4(), placeName: place.name, placeDetail: place.geocode, startDate: moment()}});
-        this.switchForm();
+        this.google.placeGeocodeById(place.place_id).then(res => {
+            place.address_components = res[0].address_components;
+            place.formatted_address = res[0].formatted_address;
+            place.id = uuidV4();
+            this.props.addPlace(ADD_PLACE, {place: {...place, startDate: moment()}});
+            this.switchForm();
+        });
     }
 
     render() {
@@ -113,7 +112,7 @@ class PlaceSearch extends React.Component {
                                 <aside className="place-search__form-places">
                                     { this.state.places.map((item) => {
                                         return (
-                                            <article key={item.id || item.name} className="place-search__place" onClick={() => this.addPlaceHandler(item)}>
+                                            <article key={item.id || item.place_id} className="place-search__place" onClick={() => this.addPlaceHandler(item)}>
                                                 <p className="name">{item.name}</p>
                                                 <span className="geocode">{item.formatted_address}</span>
                                             </article>

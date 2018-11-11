@@ -55,9 +55,12 @@ class PlaceItem extends React.Component {
                 onSwipeEnd={this.onSwipeEnd}>
                 <Link to={`/place/${this.props.objectPlace.id}`} key={this.props.objectPlace.id}>
                     <article className="place-item" ref={this.placeRef}>
-                        <div className="place-item__name">
-                            { this.props.objectPlace.placeName }
-                        </div>
+                        <h4 className="place-item__name">
+                            { this.props.objectPlace.name }
+                        </h4>
+                        <p className="place-item__description">
+                            {this.props.objectPlace.formatted_address}
+                        </p>
                     </article>
                 </Link>
                 <div>

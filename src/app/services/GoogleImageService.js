@@ -8,11 +8,11 @@ export default class GoogleImageService {
 
     getImageByName(name, page = 1) {
         return new Promise((res, rej) => {
-            this.client.search(name, {page: page, size: 'large', type: 'photo'}).then(res => {
+            this.client.search(name, {page: page, size: 'large', type: 'photo'}).then(response => {
                 if (process.env.NODE_ENV !== 'production') {
-                    console.log(res);
+                    console.log(response);
                 }
-                res(res);
+                res(response);
             }, err => {
                 rej(err);
             });
