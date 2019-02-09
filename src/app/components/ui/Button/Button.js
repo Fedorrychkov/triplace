@@ -2,10 +2,10 @@ import React from 'react';
 import './button.scss';
 
 const Button = (props) => {
-    const { classNames, title, clickEvent } = props;
+    const { classNames, title, clickEvent, disable } = props;
 
     return (
-        <button className={classNames} onClick={clickEvent}>{title}</button>
+        <button disabled={!disable} className={classNames} onClick={clickEvent}>{title}</button>
     );
 }
 

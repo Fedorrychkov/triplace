@@ -42,6 +42,7 @@ class Input extends React.Component {
                     onBlur={e => this.inputBlur(e.target.value)}
                     value = {this.props.inputValue}
                     onChange={e => this.props.inputChange(e.target.value)}
+                    autoFocus={this.props.autofocus}
                     autoComplete="false" />
                 <span className="input__error-label"></span>
             </div>

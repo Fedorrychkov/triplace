@@ -92,4 +92,18 @@
             text-align: center;
         }
     }
+
+    &__content {
+        padding: 12px 0;
+    }
+
+    &__purposes {
+        background-color: #b3e4ff;
+        padding: 8px;
+        border-radius: 6px;
+
+        h3 {
+            font-weight: 400;
+        }
+    }
 }

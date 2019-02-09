@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import AddPurpose from '../../components/AddPurpose/AddPurpose';
+import Purpose from '../../components/Purpose/Purpose';
 
 import GoogleImageService from '../../services/GoogleImageService';
 // import * as uuidV4 from 'uuid/v4'; 
@@ -38,6 +40,14 @@ const PlaceData = (props) => {
                     </div>
                 </section> */}
             </Swipe>
+            <div className="place__content">
+                { props.place.purposes && props.place.purposes.length > 0 && <div className="place__purposes">
+                    <h3>Цели</h3>
+                    {props.place.purposes.map(item => {
+                        return <Purpose key={item.id} item={item} />
+                    })}
+                </div>}
+            </div>
             
         </Fragment>
     )
@@ -51,7 +61,9 @@ class PlacePage extends React.Component {
             imageList: [],
             page: 1,
             isLoaded: false,
-            addButtonOpen: false
+            addButtonOpen: false,
+            addPurpose: false,
+            buttonOpenClose: false,
         };
     }
 
@@ -65,29 +77,42 @@ class PlacePage extends React.Component {
         this.props.getPlace({id: this.props.match.params.id});
         this.setState({isLoaded: true});
         if (this.props.place.length > 0) this.getImages();
+        console.log(this.props);
     }
 
-    addButtonClick = () => {
-        this.setState({addButtonOpen: !this.state.addButtonOpen});
+    addButtonClick = (item) => {
+        this.state.buttonOpenClose ? this.setState({addButtonOpen: false, buttonOpenClose: false, addPurpose: false}) :
+            this.setState({addButtonOpen: !this.state.addButtonOpen});
+        if (item.placeId) {
+            this.props.addPurpose(item);
+        }
+    }
+
+    addGoal = () => {
+        this.setState({addButtonOpen: !this.state.addButtonOpen, addPurpose: true, buttonOpenClose: true});
     }
 
     render() {
         return (
             <main className="place container">
+            <AddPurpose classes={this.state.addPurpose ? 'open': ''} placeId={this.props.match.params.id} closeEvent={this.addButtonClick}/>
             { this.props.place.length > 0  && <PlaceData updateHeader={this.props.updateHeader} place={this.props.place[0]} images={this.state.imageList}/> }
                 <section className="place__tasks">
                     <div className="place__tasks-empty">
-                        <p className="">Здесь могут быть Ваши цели, выполняя которые вы будете приближаться к вашей поездке</p>
+                        { this.props.place.length > 0 && !this.props.place[0].purposes &&
+                        <p className="">Здесь могут быть Ваши цели, выполняя которые вы будете приближаться к вашей поездке</p> }
                     </div>
                 </section>
                 <aside className="place__add-button">
                     { this.state.addButtonOpen && <div className="place__add-overflow"></div> }
                     <div className={`place__add-list ${this.state.addButtonOpen ? 'open' : ''}`}>
                         <ul className="place__add-items">
-                            <li className="place__add-item"> <button className="place__add-item-button">Добавить цель</button> </li>
+                            <li className="place__add-item"> <button className="place__add-item-button" onClick={this.addGoal}>Добавить цель</button> </li>
                         </ul>
                     </div>
-                    <button className="place__add-button__button circle-button" onClick={this.addButtonClick}></button>
+                    <button
+                        className={`place__add-button__button circle-button  ${this.state.buttonOpenClose ? 'close': ''}`}
+                        onClick={this.addButtonClick}></button>
                 </aside>
             </main>
         );

@@ -31,7 +31,7 @@ class AddPlace extends React.Component  {
 
     changeHandler = (value) => {
         this.setState({place: value});
-    } 
+    }
 
     render () {
         return (

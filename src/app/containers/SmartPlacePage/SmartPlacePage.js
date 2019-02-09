@@ -17,6 +17,12 @@ const mapDispatchToProps = (dispatch) => {
         getPlace: (object) => {
             dispatch(placeAction('GET_PLACE', object));
         },
+        getPurposes: (object) => {
+            dispatch(placeAction('GET_PURPOSES', object));
+        },
+        addPurpose: (object) => {
+            dispatch(placeAction('ADD_PURPOSE', object));
+        },
         updateHeader: (headerAction) => {
             dispatch(headerUpdaterAction(headerAction));
         }

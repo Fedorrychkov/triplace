@@ -16,3 +16,5 @@ export const FILTER_PLACE = 'FILTER_PLACE';
 export const GET_PLACE = 'GET_PLACE';
 export const GET_PLACES = 'GET_PLACES';
 export const EDIT_PLACE = 'EDIT_PLACE';
+export const ADD_PURPOSE = 'ADD_PURPOSE';
+export const GET_PURPOSES = 'GET_PURPOSES';

@@ -1,0 +1,22 @@
+.add-purpose {
+  position: fixed;
+  background-color: #fff;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 60px;
+  transform: translate(0, -150%);
+  transition: all .3s ease-in;
+
+  &.open {
+    transform: translate(0, 0);
+  }
+
+  &__container {
+    padding: 12px 24px;
+
+    Input {
+      margin: 24px 0;
+    }
+  }
+}

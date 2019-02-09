@@ -9,6 +9,7 @@
     cursor: pointer;
     z-index: 1;
     outline: none;
+    cursor: pointer;
 
     &::after, &::before {
         content: "";
@@ -17,7 +18,9 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: #fff;
+        transition: all .15s ease-in-out;
     }
+
     &::after {
         width: 4px;
         height: 25px;
@@ -26,5 +29,13 @@
     &::before {
         width: 25px;
         height: 4px;
+    }
+
+    &.close {
+        background-color: #f44336;
+        
+        &::after, &::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
     }
 }
